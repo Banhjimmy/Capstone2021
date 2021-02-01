@@ -1,0 +1,5 @@
+Refer to the following link in order to configure the GPIO pins of the NVIDIA Jetson Nano:
+https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/hw_setup_jetson_io.html#wwpID0E0JE0HA
+
+Additional video link for further guidance:
+https://www.youtube.com/watch?v=eImDQ0PVu2Y
