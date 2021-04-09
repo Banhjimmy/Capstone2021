@@ -1,7 +1,6 @@
 # Program runs with Python2
 
 import cv2
-import imutils
 import time
 
 # Uncomment next two lines for Pi Camera
@@ -10,10 +9,10 @@ import time
 
 # Uncomment next line if usb camera in use 
 # cap = cv2.VideoCapture(0)
-
-ret, HDframe = cap.read()
+#ret, HDframe = cap.read()
 
 def takePicture():
+    cap = cv2.VideoCapture(0, cv2.CAP_V4L2) 
     (grabbed, HDframe) = cap.read()
     cv2.waitKey(1)
     image = '/home/spring2021/Desktop/EE/HDimages/HDframe.jpg' 
