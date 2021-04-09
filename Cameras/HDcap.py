@@ -4,8 +4,8 @@ import cv2
 import imutils
 import time
 
-# Uncomment These next Two Line for Pi Camera
-# camSet = 'nvarguscamerasrc !  video/x-raw(memory:NVMM), width=3264, height=2464, format=NV12, framerate=21/1 ! nvvidconv flip-method='+str(flip)+' ! video/x-raw, width='+str(dispW)+', height='+str(dispH)+', format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
+# Uncomment next two lines for Pi Camera
+# camSet = 'nvarguscamerasrc !  video/x-raw(memory:NVMM), width=320, height=240, format=NV12, framerate=21/1 ! nvvidconv flip-method=0 ! video/x-raw, width=320, height=240, format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink'
 # cap = cv2.VideoCapture(camSet)
 
 # Uncomment next line if usb camera in use 
