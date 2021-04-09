@@ -12,7 +12,6 @@ import time
 #ret, HDframe = cap.read()
 
 def takePicture():
-    cap = cv2.VideoCapture(0, cv2.CAP_V4L2) 
     (grabbed, HDframe) = cap.read()
     cv2.waitKey(1)
     image = '/home/spring2021/Desktop/EE/HDimages/HDframe.jpg' 
