@@ -95,7 +95,7 @@ class Basestation_1(gr.top_block, Qt.QWidget):
         	log=False,
         )
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_char*1, samp_rate,True)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/ziming/Documents/Happy_1.txt', False)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/drone_ops.json', False)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blks2_packet_encoder_0 = grc_blks2.packet_mod_b(grc_blks2.packet_encoder(
         		samples_per_symbol=2,
@@ -217,9 +217,9 @@ class Basestation_3(gr.top_block, Qt.QWidget):
         	log=False,
         )
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((1, ))
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, '/home/ziming/Documents/Happy.txt', append=False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, '/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt', append=False)
         self.blocks_file_sink_1.set_unbuffered(True)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/ziming/Documents/Happy.jpg', append=False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/capstone2021/Desktop/Gun software/file_receive/Jpg/Jpg_receive.jpg', append=False)
         self.blocks_file_sink_0.set_unbuffered(True)
         self.blks2_packet_decoder_0_0 = grc_blks2.packet_demod_b(grc_blks2.packet_decoder(
         		access_code='',
@@ -270,9 +270,9 @@ class Basestation_3(gr.top_block, Qt.QWidget):
         self.code1 = code1
 
 def main(top_block_cls_1=Basestation_3,top_block_cls_2=Basestation_1,options=None):
-    open('/home/ziming/Documents/Happy_1.txt','a').close()
-    open('/home/ziming/Documents/Happy.txt','a').close()
-    open('/home/ziming/Documents/Happy.jpg','a').close()
+    open('/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/drone_ops.json','a').close()
+    open('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt','a').close()
+    open('/home/capstone2021/Desktop/Gun software/file_receive/Jpg/Jpg_receive.jpg','a').close()
     qapp = Qt.QApplication(sys.argv)
     tb1 = top_block_cls_1()
     tb1.start()
@@ -282,45 +282,46 @@ def main(top_block_cls_1=Basestation_3,top_block_cls_2=Basestation_1,options=Non
     filesize_1 = 0
     filesize_2 = 0
     while 1:
-     	Deter_mode = os.path.getsize('/home/ziming/Documents/mod.txt')
-     	filesize = os.path.getsize('/home/ziming/Documents/Happy_1.txt')
+     	Deter_mode = os.path.getsize('/home/capstone2021/Desktop/Gun software/Mod_com.txt')
+     	filesize = os.path.getsize('/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/drone_ops.json')
 	if filesize != 0:
 		tb2 = top_block_cls_2()
 	     	tb2.start()
-            	time.sleep(1)
+            	time.sleep(2)
      	    	tb2.stop()
 
-
-	    	os.remove('/home/ziming/Documents/Happy_1.txt')
-	     	open('/home/ziming/Documents/Happy_1.txt','a').close()
+	    	os.remove('/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/drone_ops.json')
+	     	open('/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/drone_ops.json','a').close()
 		print('commond sent')
-	filesize_1 = os.path.getsize('/home/ziming/Documents/Happy.txt')
+	filesize_1 = os.path.getsize('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt')
 	if filesize_1 != 0:
 		if Deter_mode == 0:
 			if Txt_count_number > 1 :
-				os.remove('/home/ziming/Documents/Overwirte.txt')
-			open('/home/ziming/Documents/Overwirte.txt','a').close()
-			textFile = '/home/ziming/Documents/TxT_Receiver_%d.txt' % Txt_count_number
-			shutil.move('/home/ziming/Documents/Happy.txt', textFile)
+				os.remove('/home/capstone2021/Desktop/Gun software/Watch_dog.txt')
+			open('/home/capstone2021/Desktop/Gun software/Watch_dog.txt','a').close()
+			textFile = '/home/capstone2021/Desktop/Gun software/file_receive/Text/TxT_Receiver_%d.txt' % Txt_count_number
+			shutil.move('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt', textFile)
 			time.sleep(1)
-			with open('/home/ziming/Documents/TxT_Receiver_%d.txt' % Txt_count_number) as firstfile, open('/home/ziming/Documents/Overwirte.txt','w') as secondfile:
+			with open('/home/capstone2021/Desktop/Gun software/file_receive/Text/TxT_Receiver_%d.txt' % Txt_count_number) as firstfile, open('/home/capstone2021/Desktop/Gun software/Watch_dog.txt','w') as secondfile:
 				for line in firstfile:
 					secondfile.write(line)
 				secondfile.close()
 			Txt_count_number += 1
-			open('/home/ziming/Documents/Happy.txt','a').close()
+			open('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt','a').close()
 			print ('get txt')
 			tb1.stop()
 			tb1 = top_block_cls_1()
 			tb1.start()
 		else :
-			textFile = '/home/ziming/Documents/JPG_Receiver_%d.jpg' % Jpg_count_number
-			shutil.move('/home/ziming/Documents/Happy.txt', textFile)
+			textFile = '/home/capstone2021/Desktop/Capstone/fire_scout_system/ground_station/received_data/new_image_%d.jpg' % Jpg_count_number
+			
 			Jpg_count_number += 1
-			open('/home/ziming/Documents/Happy.txt','a').close()
+			open('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt','a').close()
 			print ('get jpg')
 			time.sleep(10)
 			tb1.stop()
+			shutil.move('/home/capstone2021/Desktop/Gun software/file_receive/Text/Text_recie.txt', textFile)
+			
 			tb1 = top_block_cls_1()
 			tb1.start()
     tb1.stop()
@@ -330,4 +331,3 @@ def main(top_block_cls_1=Basestation_3,top_block_cls_2=Basestation_1,options=Non
 
 if __name__ == '__main__':
     main()
-
